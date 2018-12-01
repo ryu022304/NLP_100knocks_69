@@ -18,12 +18,26 @@
                     <thead>
                       <tr>
                         <th>名前</th>
+                        <th>別名</th>
+                        <th>地域</th>
+                        <th>活動開始</th>
+                        <th>活動終了</th>
+                        <th>タグ</th>
+                        <th>レーティング(投票数)</th>
+                        <th>レーティング(平均)</th>
                       </tr>
                     </thead>
                     <tbody>
                     {% for artist in objects %}
                       <tr>
                         <td>{{artist.name}}</td>
+                        <td>{{artist.aliases | linebreaksbr}}</td>
+                        <td>{{artist.area}}</td>
+                        <td>{{artist.begin}}</td>
+                        <td>{{artist.end}}</td>
+                        <td>{{artist.tags | linebreaksbr}}</td>
+                        <td>{{artist.rating_num}}</td>
+                        <td>{{artist.rating_ave}}</td>
                       </tr>
                     {% endfor %}
                     </tbody>
