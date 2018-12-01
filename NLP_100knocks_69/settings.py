@@ -73,14 +73,20 @@ WSGI_APPLICATION = 'NLP_100knocks_69.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'test-database',
+        'ENGINE': 'djongo',
+        'NAME': 'test_database',
     }
 }
-
+'''
+MONGODB_DATABASES = {
+    "default": {
+        "name": 'test_database',
+        "host": 'localhost'
+    },
+}
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

@@ -1,7 +1,19 @@
-from django.db import models
-from djangotoolbox.fields import ListField
-from djangotoolbox.fields import EmbeddedModelField
+#from django.db import models
+from djongo import models
+#from djangotoolbox.fields import ListField
+#from djangotoolbox.fields import EmbeddedModelField
 
+class Example(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+    value = models.FloatField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    objects = models.DjongoManager()
+    
+    def __str__(self):
+        return '%s' % self.name
+
+'''
 class Artist(models.Model):
     id = models.IntegerField()
     gid = models.CharField()
@@ -35,3 +47,4 @@ class Tag(model.Model):
 class Rating(model.Model):
     count = models.IntegerField()
     value = models.CharField()
+'''
