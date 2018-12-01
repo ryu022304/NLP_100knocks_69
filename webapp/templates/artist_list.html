@@ -1,1 +1,49 @@
-It Works!!
+{% extends "base.html" %}
+{% block title %}Artist List{% endblock %}
+{% load staticfiles %}
+
+      {% block body %}
+      <div id="wrapper">
+        <div id="page-wrapper">
+          <div class="row">
+            <div class="col-lg-6 full-width margin-top-20percent" >
+              <div class="panel panel-default full-width">
+
+                <div class="panel-heading">
+                  Edit Help
+                </div>
+
+                <div class="panel-body full-width full-height">
+                  <table id="artist-list-table" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline full-width">
+                    <thead>
+                      <tr>
+                        <th>名前</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for artist in objects %}
+                      <tr>
+                        <td>{{artist.name}}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function() {
+            $('#artist-list-table').DataTable({
+                responsive: true,
+                // sort機能の無効化
+                ordering: false,
+                // ページの表示件数を変更する
+                displayLength: 20,
+            });
+        });
+      </script>
+      {% endblock %}
