@@ -4,9 +4,9 @@ from django.views.generic import TemplateView
 from webapp.models import *
 
 
-class WorkerListView(TemplateView):
-    template_name = "worker_list.html"
+class ArtistListView(TemplateView):
+    template_name = "artist_list.html"
 
     def get(self, request, *args, **kwargs):
-        context = super(WorkerListView, self).get_context_data(**kwargs)
+        context = super(ArtistListView, self).get_context_data(**kwargs)
         return render(self.request, self.template_name, context)

@@ -1,50 +1,37 @@
-#from django.db import models
 from djongo import models
-#from djangotoolbox.fields import ListField
-#from djangotoolbox.fields import EmbeddedModelField
 
-class Example(models.Model):
-    name = models.CharField(max_length=255, blank=False)
-    value = models.FloatField()
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
+class Artist(models.Model):
+    #id = models.IntegerField()
+    gid = models.CharField(max_length=100)
+    name = models.CharField(max_length=30)
+    sort_name = models.CharField(max_length=30)
+    area = models.CharField(max_length=20)
+    aliases = models.ListField(models.EmbeddedModelField('Aliase'))
+    begin = models.EmbeddedModelField('Begin')
+    end = models.EmbeddedModelField('End')
+    tags = models.ListField(models.EmbeddedModelField('Tag'))
+    rating = models.EmbeddedModelField('Rating')
+
     objects = models.DjongoManager()
 
-    def __str__(self):
-        return '%s' % self.name
+class Aliase(models.Model):
+    name = models.CharField(max_length=30)
+    sort_name = models.CharField(max_length=30)
 
-'''
-class Artist(models.Model):
-    id = models.IntegerField()
-    gid = models.CharField()
-    name = models.CharField()
-    sort_name = models.CharField()
-    area = models.CharField()
-    aliases = ListField(EmbeddedModelField('Aliase'))
-    begin = EmbeddedModelField('Begin')
-    end = EmbeddedModelField('End')
-    tags = ListField(EmbeddedModelField('Tag'))
-    rating = EmbeddedModelField('Rating')
-
-class Aliase(model.Model):
-    name = models.CharField()
-    sort_name = models.CharField()
-
-class Begin(model.Model):
+class Begin(models.Model):
     year = models.IntegerField()
     month = models.IntegerField()
     date = models.IntegerField()
 
-class End(model.Model):
+class End(models.Model):
     year = models.IntegerField()
     month = models.IntegerField()
     date = models.IntegerField()
 
-class Tag(model.Model):
+class Tag(models.Model):
     count = models.IntegerField()
-    value = models.CharField()
+    value = models.CharField(max_length=30)
 
-class Rating(model.Model):
+class Rating(models.Model):
     count = models.IntegerField()
-    value = models.CharField()
-'''
+    value = models.CharField(max_length=100)
