@@ -14,9 +14,10 @@ class ArtistListView(TemplateView):
         #context = super(ArtistListView, self).get_context_data(**kwargs)
 
         artists = Artist.objects.mongo_find()
-
         arts = []
-        for artist in artists[:100]:
+
+        # 10000件にしている。全体で921337件あるので取得に時間がかかりすぎる為
+        for artist in artists[:10000]:
             art = artist
 
             # 別名の整形
@@ -29,21 +30,25 @@ class ArtistListView(TemplateView):
 
             # 活動開始日の整形
             if 'begin' in artist:
-                begin_date = str(artist['begin']['year'])
+                begin_date = []
+                if 'year' in artist['begin']:
+                    begin_date.append(str(artist['begin']['year']))
                 if 'month' in artist['begin']:
-                    begin_date += '/'+ str(artist['begin']['month'])
-                    if 'date' in artist['begin']:
-                        begin_date += '/'+ str(artist['begin']['date'])
-                art['begin'] = begin_date
+                    begin_date.append(str(artist['begin']['month']))
+                if 'date' in artist['begin']:
+                    begin_date.append(str(artist['begin']['date']))
+                art['begin'] = '/'.join(begin_date)
 
             # 活動終了日の整形
             if 'end' in artist:
-                end_date = str(artist['end']['year'])
+                end_date = []
+                if 'year' in artist['end']:
+                    end_date.append(str(artist['end']['year']))
                 if 'month' in artist['end']:
-                    end_date += '/'+ str(artist['end']['month'])
-                    if 'date' in artist['end']:
-                        end_date += '/'+ str(artist['end']['date'])
-                art['end'] = end_date
+                    end_date.append(str(artist['end']['month']))
+                if 'date' in artist['end']:
+                    end_date.append(str(artist['end']['date']))
+                art['end'] = '/'.join(end_date)
 
             # タグの整形
             if 'tags' in artist:
