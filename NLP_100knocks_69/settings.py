@@ -161,14 +161,6 @@ DATABASES = {
         'NAME': 'test_database',
     }
 }
-'''
-MONGODB_DATABASES = {
-    "default": {
-        "name": 'test_database',
-        "host": 'localhost'
-    },
-}
-'''
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
