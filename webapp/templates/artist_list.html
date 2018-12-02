@@ -12,7 +12,15 @@
                 <div class="panel-heading">
                   Edit Help
                 </div>
-
+                <form action="" method="get">
+                  <select name="search_item">
+                  <option value="name">アーティスト名</option>
+                  <option value="aliase">アーティスト別名</option>
+                  <option value="tag">タグ</option>
+                  </select>
+                  <input type="text" size="20" name="search">
+                  <input type="submit" value="送信">
+                </form>
                 <div class="panel-body full-width full-height">
                   <table id="artist-list-table" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline full-width">
                     <thead>

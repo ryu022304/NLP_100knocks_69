@@ -10,14 +10,21 @@ def info(msg):
 class ArtistListView(TemplateView):
     template_name = "artist_list.html"
 
-    def get(self, request, *args, **kwargs):
-        #context = super(ArtistListView, self).get_context_data(**kwargs)
-
-        artists = Artist.objects.mongo_find()
+    def search(self,item = '',content = '',limit = 100):
+        if content == '':
+            artists = Artist.objects.mongo_find()
+        else:
+            if item == 'name':
+                artists = Artist.objects.mongo_find({'name':content})
+            elif item == 'aliase':
+                artists = Artist.objects.mongo_find({'aliases.name':content})
+            elif item == 'tag':
+                artists = Artist.objects.mongo_find({'tags.value':content})
+            limit = artists.count()
         arts = []
 
-        # 10000件にしている。全体で921337件あるので取得に時間がかかりすぎる為
-        for artist in artists[:10000]:
+        # 100件にしている。全体で921337件あるので表示に時間がかかりすぎる為
+        for artist in artists[:limit]:
             art = artist
 
             # 別名の整形
@@ -66,9 +73,13 @@ class ArtistListView(TemplateView):
 
         d = { 'objects' : arts }
 
-        #info(art[:10])
-
-        #context['artists'] = artists
-        #info(context['artists'])
-
         return render(self.request, self.template_name, d)
+
+    def get(self, request, *args, **kwargs):
+        if request.method == 'GET':
+            if 'search' in request.GET:
+                info(request.GET['search'])
+                info(request.GET['search_item'])
+                return self.search(request.GET['search_item'], request.GET['search'])
+            else:
+                return self.search()

@@ -6,7 +6,8 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('artist_list/', webapp_view.ArtistListView.as_view())
+    path('artist_list/', webapp_view.ArtistListView.as_view()),
+    path('artist_list/search',webapp_view.ArtistListView, name='getSearchResult')
 ]
 
 if settings.DEBUG:
