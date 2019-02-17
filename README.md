@@ -5,7 +5,7 @@ http://www.cl.ecei.tohoku.ac.jp/nlp100/
 >ユーザから入力された検索条件に合致するアーティストの情報を表示するWebアプリケーションを作成せよ．アーティスト名，アーティストの別名，タグ等で検索条件を指定し，アーティスト情報のリストをレーティングの高い順などで整列して表示せよ．
 
 ## 使用例
-![nlp69](https://user-images.githubusercontent.com/33801040/52910272-8b208600-32d8-11e9-9369-e41f10f08592.gif)
+![nlp69](https://user-images.githubusercontent.com/33801040/52910320-2580c980-32d9-11e9-912d-2cb6d3943167.gif)
 
 
 ## 注意点
